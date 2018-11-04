@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Lethean Web Miner Protype</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/vendor/bootstrap.css">
+        <link rel="stylesheet" href="css/vendor/marketing.css">
+        <link rel="stylesheet" href="css/vendor/rzslider.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    </head>
+    <body ng-app="WebMiner" ng-controller="mainCtrl">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <h1> Lethean Web Miner Prototype</h1>
+
+        <!------------------------------>
+        <div class="header">
+            <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+                <a class="pure-menu-heading" href="">Lethean Web Miner</a>
+            </div>
+        </div>
+
+        <div class="splash-container">
+            <div class="splash">
+                <h3> Status: {{ isMining == true ? 'Mining in progress!' : 'Not mining!' }} </h3>
+                <input type="text"  class="form-control" ng-disabled="isMining" ng-model="miningAddr">
+                <br>
+                <div zingchart id="chart-1" zc-json="myJson" zc-width="600px" zc-height="250px"></div>
+                <br>
+                <div>
+                    <button class="btn btn-success" ng-click="startMining()" ng-disabled="isMining">Start mining!</button>
+                    <button class="btn btn-danger"  ng-click="stopMining()" ng-disabled="!isMining">Stop mining!</button>
+                </div>
+                <br>
+                <div class="splash-head">
+                    <p> CPU Utilization: </p>
+                    <rzslider rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>                </div>
+                <br>
+                <p class="splash-head"> Current hash rate: {{ currHashRate | number : 2 }} h/s. Total hashes: {{ hashestSubmitted}} hashes. Elapsed: {{ secondsElapsed}} seconds. CPU Throttle: {{ CPUThrottle}}%</p>
+            </div>
+        </div>
+
+        <div class="footer l-box is-center">
+            Brandan Tyler Lasley 2018
+        </div>
+        <!------------------------------>
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="./js/vendor/angular.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="./js/vendor/rzslider.min.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/374756/zingchart-2.2.0.min.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/374756/zingchart-angularjs-1.0.4.js"></script>
+        <script src="./js/vendor/webmr.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
+
+
+
+
