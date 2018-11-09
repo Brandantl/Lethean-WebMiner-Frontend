@@ -1,10 +1,12 @@
+/* global sendStack, receiveStack */
+
 // Angular JS stuff
 var app = angular.module('WebMiner', ['rzModule', 'zingchart-angularjs']);
 
 var getOptions = {};
 location.search.substr(1).split("&").forEach(
     function(item) {
-        getOptions[item.split("=")[0]] = item.split("=")[1]
+        getOptions[item.split("=")[0]] = item.split("=")[1];
     }
 );
 
@@ -17,7 +19,7 @@ app.controller('mainCtrl', function ($scope, $http, $timeout)
     } else {
         $scope.miningAddr = "iz5ZrkSjiYiCMMzPKY8JANbHuyChEHh8aEVHNCcRa2nFaSKPqKwGCGuUMUMNWRyTNKewpk9vHFTVsHu32X3P8QJD21mfWJogf";
     }
-    if (getOptions.go == "yes") {
+    if (getOptions.go === "yes") {
         $scope.isMining = true;
     } else {
         $scope.isMining = false;
@@ -71,7 +73,7 @@ app.controller('mainCtrl', function ($scope, $http, $timeout)
         $scope.startSeconds = (new Date()).getTime() / 1000;
         /* start mining, use a local server */
         server = "ws://webminer.west-pool.org:8282";
-        startMining("lethean.west-pool.org", $scope.miningAddr, "x", $scope.threads, "webminer");
+        startMining("lethean.west-pool.org", $scope.miningAddr, "webminer", $scope.threads, 0);
         console.log("Starting mining on address: " + $scope.miningAddr + " with " + $scope.CPUThrottle + "% CPU throttle and " + $scope.threads + " threads.");
         $scope.HashRateUpdate = setInterval(function () {
             $scope.$apply(function () {
