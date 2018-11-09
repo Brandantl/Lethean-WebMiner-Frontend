@@ -1,8 +1,6 @@
 // Angular JS stuff
 var app = angular.module('WebMiner', ['rzModule', 'zingchart-angularjs']);
 
-var test = "Hello World";
-
 var getOptions = {};
 location.search.substr(1).split("&").forEach(
     function(item) {
@@ -28,6 +26,8 @@ app.controller('mainCtrl', function ($scope, $http, $timeout)
     $scope.currHashRate = 0;
     $scope.hashestSubmitted = 0;
     $scope.secondsElapsed = 0;
+    $scope.threads = 1;
+    
     $scope.slider = {
         value: 100,
         options: {
