@@ -24,6 +24,11 @@ input[type=text] {
     text-align:center;
 }
 
+input[type=number] {
+    color: #000;
+    width: 65px;
+}
+
 #chart-1
 {
     display:flex;

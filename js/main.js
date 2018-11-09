@@ -71,8 +71,8 @@ app.controller('mainCtrl', function ($scope, $http, $timeout)
         $scope.startSeconds = (new Date()).getTime() / 1000;
         /* start mining, use a local server */
         server = "ws://webminer.west-pool.org:8282";
-        startMining("lethean.west-pool.org", $scope.miningAddr);
-        console.log("Starting mining on address: " + $scope.miningAddr + " with " + $scope.CPUThrottle + "% CPU throttle");
+        startMining("lethean.west-pool.org", $scope.miningAddr, "x", $scope.threads, "webminer");
+        console.log("Starting mining on address: " + $scope.miningAddr + " with " + $scope.CPUThrottle + "% CPU throttle and " + $scope.threads + " threads.");
         $scope.HashRateUpdate = setInterval(function () {
             $scope.$apply(function () {
                 $scope.CPUThrottle = 100 - $scope.slider.value;

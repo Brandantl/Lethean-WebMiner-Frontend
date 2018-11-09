@@ -8,13 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
         <link rel="stylesheet" href="css/vendor/marketing.css">
         <link rel="stylesheet" href="css/vendor/rzslider.min.css">
         <link rel="stylesheet" href="css/vendor/pure-min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/font-awesome.css">
+        <link rel="stylesheet" href="css/vendor/font-awesome.css">
     </head>
     <body ng-app="WebMiner" ng-controller="mainCtrl">
         <!--[if lt IE 8]>
@@ -44,8 +43,11 @@
                 </div>
                 <br>
                 <div class="splash-head">
+                    <p> Threads: </p> 
+                    <input ng-disabled="isMining" class="form-control" type="number" name="input" ng-model="threads" min="1" max="99" required>
                     <p> CPU Utilization: </p>
-                    <rzslider rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>                </div>
+                    <rzslider rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>        
+                </div>
                 <br>
                 <p class="splash-head"> Current hash rate: {{ currHashRate | number : 2 }} h/s. Total hashes: {{ hashestSubmitted}} hashes. Elapsed: {{ secondsElapsed}} seconds. CPU Throttle: {{ CPUThrottle}}%</p>
             </div>
