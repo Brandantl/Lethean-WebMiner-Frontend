@@ -19,17 +19,12 @@ app.controller('mainCtrl', function ($scope, $http, $timeout)
     } else {
         $scope.miningAddr = "iz5ZrkSjiYiCMMzPKY8JANbHuyChEHh8aEVHNCcRa2nFaSKPqKwGCGuUMUMNWRyTNKewpk9vHFTVsHu32X3P8QJD21mfWJogf";
     }
-    if (getOptions.go === "yes") {
-        $scope.isMining = true;
-    } else {
-        $scope.isMining = false;
-    }
     $scope.totalSecondsRunning = 0;
     $scope.currHashRate = 0;
     $scope.hashestSubmitted = 0;
     $scope.secondsElapsed = 0;
     $scope.threads = 1;
-    
+
     $scope.slider = {
         value: 100,
         options: {
@@ -106,4 +101,9 @@ app.controller('mainCtrl', function ($scope, $http, $timeout)
         $scope.secondsElapsed = 0;
         console.log("Stopping CPU mining");
     };
+    
+    if (getOptions.go === "yes") 
+    {
+        $scope.startMining();
+    }
 });
