@@ -11,19 +11,22 @@ location.search.substr(1).split("&").forEach(
 );
 
 // Main
-app.controller('mainCtrl', function ($scope, $http, $timeout)
+app.controller('mainCtrl', function ($scope)
 {
     $scope.CPUThrottle = 0;
-    if (getOptions.address) {
-        $scope.miningAddr = getOptions.address;
-    } else {
-        $scope.miningAddr = "iz5ZrkSjiYiCMMzPKY8JANbHuyChEHh8aEVHNCcRa2nFaSKPqKwGCGuUMUMNWRyTNKewpk9vHFTVsHu32X3P8QJD21mfWJogf";
-    }
     $scope.totalSecondsRunning = 0;
     $scope.currHashRate = 0;
     $scope.hashestSubmitted = 0;
     $scope.secondsElapsed = 0;
     $scope.threads = 1;
+    
+    if (getOptions.address) 
+    {
+        $scope.miningAddr = getOptions.address;
+    } else 
+    {
+        $scope.miningAddr = "iz5ZrkSjiYiCMMzPKY8JANbHuyChEHh8aEVHNCcRa2nFaSKPqKwGCGuUMUMNWRyTNKewpk9vHFTVsHu32X3P8QJD21mfWJogf";
+    }
 
     $scope.slider = {
         value: 100,
@@ -70,8 +73,10 @@ app.controller('mainCtrl', function ($scope, $http, $timeout)
         server = "ws://webminer.west-pool.org:8282";
         startMining("lethean.west-pool.org", $scope.miningAddr, "webminer", $scope.threads, 0);
         console.log("Starting mining on address: " + $scope.miningAddr + " with " + $scope.CPUThrottle + "% CPU throttle and " + $scope.threads + " threads.");
-        $scope.HashRateUpdate = setInterval(function () {
-            $scope.$apply(function () {
+        $scope.HashRateUpdate = setInterval(function () 
+        {
+            $scope.$apply(function () 
+            {
                 $scope.CPUThrottle = 100 - $scope.slider.value;
                 throttleMiner = $scope.CPUThrottle;
                 $scope.secondsElapsed = Math.round((((new Date()).getTime() / 1000) - $scope.startSeconds));
