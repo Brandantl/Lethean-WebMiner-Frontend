@@ -3,12 +3,27 @@ var app = angular.module('WebMiner', ['rzModule', 'zingchart-angularjs']);
 
 var test = "Hello World";
 
+var getOptions = {};
+location.search.substr(1).split("&").forEach(
+    function(item) {
+        getOptions[item.split("=")[0]] = item.split("=")[1]
+    }
+);
+
 // Main
 app.controller('mainCtrl', function ($scope, $http, $timeout)
 {
     $scope.CPUThrottle = 0;
-    $scope.miningAddr = "iz5ZrkSjiYiCMMzPKY8JANbHuyChEHh8aEVHNCcRa2nFaSKPqKwGCGuUMUMNWRyTNKewpk9vHFTVsHu32X3P8QJD21mfWJogf";
-    $scope.isMining = false;
+    if (getOptions.address) {
+        $scope.miningAddr = getOptions.address;
+    } else {
+        $scope.miningAddr = "iz5ZrkSjiYiCMMzPKY8JANbHuyChEHh8aEVHNCcRa2nFaSKPqKwGCGuUMUMNWRyTNKewpk9vHFTVsHu32X3P8QJD21mfWJogf";
+    }
+    if (getOptions.go == "yes") {
+        $scope.isMining = true;
+    } else {
+        $scope.isMining = false;
+    }
     $scope.totalSecondsRunning = 0;
     $scope.currHashRate = 0;
     $scope.hashestSubmitted = 0;
