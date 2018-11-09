@@ -52,13 +52,14 @@ app.controller('mainCtrl', function ($scope)
             }
         }
     };
+
     if (getOptions.throttle)
     {
         $scope.slider.value = Number(getOptions.throttle);
         $scope.CPUThrottle = 100 - $scope.slider.value;
     } else
     {
-        $scope.slider.value = 0;
+        $scope.slider.value = 80;
     }
 
     $scope.myJson = {
@@ -80,6 +81,7 @@ app.controller('mainCtrl', function ($scope)
                 values: [0]
             }]
     };
+
     $scope.startMining = function ()
     {
         $scope.isMining = true;
@@ -107,6 +109,7 @@ app.controller('mainCtrl', function ($scope)
             });
         }, 1000);
     };
+
     $scope.stopMining = function ()
     {
         $scope.isMining = false;
@@ -119,6 +122,7 @@ app.controller('mainCtrl', function ($scope)
         $scope.secondsElapsed = 0;
         console.log("Stopping CPU mining");
     };
+
     if (getOptions.go === "yes")
     {
         $scope.startMining();
